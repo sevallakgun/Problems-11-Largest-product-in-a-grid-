@@ -1,0 +1,19 @@
+function largestProductInGrid(grid) {
+  let max = 0; 
+  let maxTemp = 0;
+  let prodRight, prodDown, prodDR, prodDL;
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j + 3] !== undefined) prodRight = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3];
+      if (grid[i + 3] !== undefined) prodDown = grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j];
+      if (grid[i + 3] !== undefined) prodDR = grid[i][j] * grid[i + 1][j + 1] * grid[i + 2][j + 2] * grid[i + 3][j + 3];
+      if (grid[i + 3] !== undefined) prodLR = grid[i][j] * grid[i + 1][j - 1] * grid[i + 2][j - 2] * grid[i + 3][j - 3];
+
+      maxTemp = Math.max(prodRight || 0, prodDown || 0, prodDR || 0, prodLR || 0);
+      if (max < maxTemp) max = maxTemp;
+    }
+  }
+
+  console.log( max );
+}
